@@ -1,9 +1,14 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 class Calculator {
     private BigDecimal total;
     private int tipPercentage;
     private int numOfPeople;
+
+    Calculator() {
+        total = total.setScale(2, RoundingMode.HALF_UP);
+    }
 
     BigDecimal getTotal() {
         return total;
@@ -29,4 +34,8 @@ class Calculator {
         this.numOfPeople = numOfPeople;
     }
 
+    String calculateTotal() {
+        Double toReturn = (total.doubleValue() + (total.doubleValue() * tipPercentage)) / numOfPeople;
+        return String.valueOf(toReturn);
+    }
 }
