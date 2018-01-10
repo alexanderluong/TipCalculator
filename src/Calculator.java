@@ -3,7 +3,7 @@ import java.math.RoundingMode;
 
 class Calculator {
     private BigDecimal total;
-    private int tipPercentage;
+    private Double tipPercentage;
     private int numOfPeople;
 
     BigDecimal getTotal() {
@@ -14,11 +14,11 @@ class Calculator {
         this.total = total;
     }
 
-    int getTipPercentage() {
+    Double getTipPercentage() {
         return tipPercentage;
     }
 
-    void setTipPercentage(int tipPercentage) {
+    void setTipPercentage(Double tipPercentage) {
         this.tipPercentage = tipPercentage;
     }
 
@@ -35,7 +35,8 @@ class Calculator {
     }
 
     String calculateTotal() {
-        Double toReturn = (total.doubleValue() + (total.doubleValue() * tipPercentage / 100)) / numOfPeople;
-        return String.valueOf(toReturn);
+        Double newTotal = (total.doubleValue() + (total.doubleValue() * tipPercentage / 100)) / numOfPeople;
+        BigDecimal temp = new BigDecimal(newTotal).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return temp.toString();
     }
 }
