@@ -6,10 +6,6 @@ class Calculator {
     private int tipPercentage;
     private int numOfPeople;
 
-    Calculator() {
-        total = total.setScale(2, RoundingMode.HALF_UP);
-    }
-
     BigDecimal getTotal() {
         return total;
     }
@@ -34,8 +30,12 @@ class Calculator {
         this.numOfPeople = numOfPeople;
     }
 
+    void setScale() {
+        this.total = this.total.setScale(2, RoundingMode.HALF_UP);
+    }
+
     String calculateTotal() {
-        Double toReturn = (total.doubleValue() + (total.doubleValue() * tipPercentage)) / numOfPeople;
+        Double toReturn = (total.doubleValue() + (total.doubleValue() * tipPercentage / 100)) / numOfPeople;
         return String.valueOf(toReturn);
     }
 }
